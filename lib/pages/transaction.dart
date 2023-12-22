@@ -23,13 +23,27 @@ class _TransactionsListState extends State<TransactionsList> {
       child: Padding(
         padding: const EdgeInsets.all(8),
         child: ListTile(
-          leading: CircleAvatar(
-            backgroundImage: NetworkImage(item.image),
-            radius: 25,
+          leading: ClipRRect(
+            borderRadius: BorderRadius.circular(8),
+            child: Image.network(
+              item.image,
+              fit: BoxFit.cover,
+              width: 50,
+              height: 50,
+            ),
           ),
-          title: Text(item.name),
+          title: Text(
+            item.name,
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
           subtitle: Text(item.date),
-          trailing: Text(item.price),
+          trailing: Text(
+            item.price,
+            style: TextStyle(
+              color: item.price.startsWith('-') ? Colors.red : Colors.blue,
+              fontSize: 20,
+            ),
+          ),
         ),
       ),
     );
@@ -73,6 +87,7 @@ class _TransactionsListState extends State<TransactionsList> {
                   Padding(
                     padding: const EdgeInsets.all(8),
                     child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Column(children: [
@@ -82,22 +97,30 @@ class _TransactionsListState extends State<TransactionsList> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  state.items.day,
+                                  state.items.day.toUpperCase(),
                                   style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold),
+                                      fontSize: 15, color: Colors.grey),
                                 ),
+                                SizedBox(height: 5),
                                 Text(
                                   state.items.date,
                                   style: TextStyle(
-                                      fontSize: 16,
+                                      fontSize: 24,
                                       fontWeight: FontWeight.bold),
                                 ),
+                                SizedBox(height: 30),
                               ],
                             ),
                           )
                         ]),
-                        Text(state.items.total)
+                        Text(
+                          state.items.total,
+                          style: TextStyle(
+                            fontSize: 24,
+                            color: Colors.blue,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        )
                       ],
                     ),
                   ),
@@ -111,9 +134,9 @@ class _TransactionsListState extends State<TransactionsList> {
                         ),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.grey.withOpacity(0.5),
-                            spreadRadius: 2,
-                            blurRadius: 5,
+                            color: Colors.grey.withOpacity(0.3),
+                            spreadRadius: 19,
+                            blurRadius: 8,
                             offset: Offset(0, 3),
                           ),
                         ],
@@ -123,7 +146,8 @@ class _TransactionsListState extends State<TransactionsList> {
                         itemBuilder: (_, int index) {
                           if (index == 0) {
                             return Padding(
-                              padding: const EdgeInsets.all(40),
+                              padding: const EdgeInsets.only(
+                                  top: 40, left: 40, right: 40),
                               child: Text(
                                 'Transactions',
                                 style: TextStyle(
