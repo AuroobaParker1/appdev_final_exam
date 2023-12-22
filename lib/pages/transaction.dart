@@ -113,14 +113,16 @@ class _TransactionsListState extends State<TransactionsList> {
                             ),
                           )
                         ]),
-                        Text(
-                          state.items.total,
-                          style: TextStyle(
-                            fontSize: 24,
-                            color: Colors.blue,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        )
+                        Align(
+                            alignment: Alignment.centerRight,
+                            child: Text(
+                              state.items.total,
+                              style: TextStyle(
+                                fontSize: 24,
+                                color: Colors.blue,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ))
                       ],
                     ),
                   ),
